@@ -86,7 +86,15 @@ class DataClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataClient = dataClients::find($id);
+        $dataClient->companyName = $request->companyName;
+        $dataClient->businessTurn = $request->businessTurn;
+        $dataClient->name = $request->name;
+        $dataClient->address = $request->address;
+        $dataClient->phone = $request->phone;
+        $dataClient->save();
+
+        return $dataClient;
     }
 
     /**
@@ -97,6 +105,8 @@ class DataClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dataClient = dataClients::finf($id);
+
+        $dataClient->delete();
     }
 }
