@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use App\Models\dataClientsController;
+use App\Models\dataClients;
 
 class DataClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|dataClients[]|Factory|View|Collection
      */
     public function index(Request $request)
     {
-        return dataClientsController::all();
+        if ($request->ajax()){
+            return dataClients::all();
+        }else{
+            return view('Home');
+        }
     }
 
     /**
@@ -30,12 +38,21 @@ class DataClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return dataClients
      */
     public function store(Request $request)
     {
-        //
+        $dataClient = new dataClients();
+        $dataClient->companyName = $request->companyName;
+        $dataClient->businessTurn = $request->businessTurn;
+        $dataClient->name = $request->name;
+        $dataClient->address = $request->address;
+        $dataClient->phone = $request->phone;
+        $dataClient->email = $request->email;
+        $dataClient->save();
+
+        return $dataClient;
     }
 
     /**
@@ -63,7 +80,7 @@ class DataClientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

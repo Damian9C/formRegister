@@ -13,7 +13,7 @@ class CreateDataClientsControllersTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_clients_controllers', function (Blueprint $table) {
+        Schema::create('data_clients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('companyName');
             $table->text('businessTurn');
