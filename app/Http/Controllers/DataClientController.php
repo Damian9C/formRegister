@@ -103,12 +103,14 @@ class DataClientController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return string
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $dataClient = dataClients::finf($id);
+        $dataClient = dataClients::find($request->id);
 
         $dataClient->delete();
+
+        return 'user Deleted';
     }
 }

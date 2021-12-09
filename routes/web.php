@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dataClients', [\App\Http\Controllers\DataClientController::class, 'index'])->middleware('auth');
+Route::post('/deleteClients', [\App\Http\Controllers\DataClientController::class, 'destroy'])->middleware('auth');
 Route::post('/newDataClient', [\App\Http\Controllers\DataClientController::class, 'store']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5295,37 +5295,151 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ClientsList",
   data: function data() {
     return {
-      clients: {}
+      clients: {},
+      clientSelected: {
+        companyName: '',
+        businessTurn: '',
+        name: '',
+        address: '',
+        phone: '',
+        email: ''
+      },
+      algo: true,
+      dialog: false
     };
   },
   mounted: function mounted() {
-    var _this = this;
+    this.getClientsData();
+  },
+  methods: {
+    deleteClient: function deleteClient() {
+      axios.post("/deleteClients", {
+        id: this.clientSelected.id
+      }).then(function (item) {
+        console.log(item);
+      });
+      this.dialog = false;
+      this.getClientsData();
+    },
+    getClientsData: function getClientsData() {
+      var _this = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var request;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return axios.get('/dataClients');
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('/dataClients');
 
-            case 2:
-              request = _context.sent;
-              _this.clients = request.data;
-              console.log(_this.clients);
+              case 2:
+                request = _context.sent;
+                _this.clients = request.data;
+                console.log(_this.clients);
 
-            case 5:
-            case "end":
-              return _context.stop();
+              case 5:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      }, _callee);
-    }))();
+        }, _callee);
+      }))();
+    }
   }
 });
 
@@ -10620,7 +10734,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.clientList__title[data-v-6b338eab]{\n    width: 100%;\n    text-align: center;\n    margin: 0 0 .5rem;\n    font-size: 1.5rem;\n    font-weight: bold;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.clientList__title[data-v-6b338eab]{\n    width: 100%;\n    text-align: center;\n    margin: 0 0 .5rem;\n    font-size: 1.5rem;\n    font-weight: bold;\n}\n.listClient[data-v-6b338eab]{\n    color: #454545;\n    margin-bottom: 1rem;\n}\n.listClient__title[data-v-6b338eab]{\n    font-size: 1.2rem;\n}\n.buttonRed[data-v-6b338eab]{\n    margin-right: 10px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29469,60 +29583,315 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "clientList__title" }, [
-      _vm._v("\n        Clientes Solicitantes\n    "),
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _c("table", { staticClass: "table" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.clients, function (client) {
-            return _c("tr", { key: client.id }, [
-              _c("th", [_vm._v(_vm._s(client.companyName))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(client.businessTurn))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(client.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(client.address))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(client.phone))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(client.email))]),
-            ])
-          }),
-          0
-        ),
+  return _c(
+    "div",
+    { attrs: { "data-app": "" } },
+    [
+      _c("div", { staticClass: "clientList__title" }, [
+        _vm._v("\n        Clientes Solicitantes\n    "),
       ]),
-    ]),
-  ])
+      _vm._v(" "),
+      _c("v-simple-table", {
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function () {
+              return [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { staticClass: "text-left" }, [
+                      _vm._v("Nombre Empresa"),
+                    ]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "text-left" }, [
+                      _vm._v("Nombre Solicitante"),
+                    ]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "text-left" }, [
+                      _vm._v("Telefono"),
+                    ]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "text-left" }, [_vm._v("Status")]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "text-left" }, [
+                      _vm._v("Acciones"),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.clients, function (client) {
+                    return _c("tr", { key: client.id }, [
+                      _c("td", [_vm._v(_vm._s(client.companyName))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(client.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(client.phone))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(
+                              client.status === 1 ? "Contactado" : "En espera"
+                            ) +
+                            "\n                "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "div",
+                          { staticClass: "text-center" },
+                          [
+                            _c(
+                              "v-dialog",
+                              {
+                                attrs: { width: "500" },
+                                scopedSlots: _vm._u(
+                                  [
+                                    {
+                                      key: "activator",
+                                      fn: function (ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
+                                          _c(
+                                            "v-btn",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  attrs: {
+                                                    outlined: "",
+                                                    small: "",
+                                                  },
+                                                  on: {
+                                                    click: function ($event) {
+                                                      _vm.clientSelected =
+                                                        client
+                                                    },
+                                                  },
+                                                },
+                                                "v-btn",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            ),
+                                            [
+                                              _vm._v(
+                                                "\n                                    Ver Mas\n                                "
+                                              ),
+                                            ]
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                  ],
+                                  null,
+                                  true
+                                ),
+                                model: {
+                                  value: _vm.dialog,
+                                  callback: function ($$v) {
+                                    _vm.dialog = $$v
+                                  },
+                                  expression: "dialog",
+                                },
+                              },
+                              [
+                                _vm._v(" "),
+                                _c(
+                                  "v-card",
+                                  [
+                                    _c(
+                                      "v-card-title",
+                                      { staticClass: "text-h5 grey lighten-2" },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Datos del Cliente"
+                                        ),
+                                        _c("br"),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("v-card-text", [
+                                      _c("div", { staticClass: "listClient" }, [
+                                        _c(
+                                          "div",
+                                          { staticClass: "listClient__title" },
+                                          [
+                                            _vm._v(
+                                              "\n                                            Nombre Compania:\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(
+                                              _vm.clientSelected.companyName
+                                            ) +
+                                            "\n                                    "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "listClient" }, [
+                                        _c(
+                                          "div",
+                                          { staticClass: "listClient__title" },
+                                          [
+                                            _vm._v(
+                                              "\n                                            Actividad:\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(
+                                              _vm.clientSelected.businessTurn
+                                            ) +
+                                            "\n                                    "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "listClient" }, [
+                                        _c(
+                                          "div",
+                                          { staticClass: "listClient__title" },
+                                          [
+                                            _vm._v(
+                                              "\n                                            Nombre del Solicitante:\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(_vm.clientSelected.name) +
+                                            "\n                                    "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "listClient" }, [
+                                        _c(
+                                          "div",
+                                          { staticClass: "listClient__title" },
+                                          [
+                                            _vm._v(
+                                              "\n                                            Domicilio:\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(_vm.clientSelected.address) +
+                                            "\n                                    "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "listClient" }, [
+                                        _c(
+                                          "div",
+                                          { staticClass: "listClient__title" },
+                                          [
+                                            _vm._v(
+                                              "\n                                            Telefono:\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(_vm.clientSelected.phone) +
+                                            "\n                                    "
+                                        ),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "listClient" }, [
+                                        _c(
+                                          "div",
+                                          { staticClass: "listClient__title" },
+                                          [
+                                            _vm._v(
+                                              "\n                                            Email:\n                                        "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(_vm.clientSelected.email) +
+                                            "\n                                    "
+                                        ),
+                                      ]),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-card-actions",
+                                      [
+                                        _c("v-spacer"),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            staticClass: "buttonRed",
+                                            attrs: {
+                                              outlined: "",
+                                              color: "#CA0404",
+                                            },
+                                            on: { click: _vm.deleteClient },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                        Borrar\n                                    "
+                                            ),
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              outlined: "",
+                                              color: "#00AAFF",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                _vm.dialog = false
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                        Cerrar\n                                    "
+                                            ),
+                                          ]
+                                        ),
+                                      ],
+                                      1
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ]),
+                    ])
+                  }),
+                  0
+                ),
+              ]
+            },
+            proxy: true,
+          },
+        ]),
+      }),
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre Empresa")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Actividad")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Nombre Solicitante")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Domicilio")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Telefono")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Correo")]),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
