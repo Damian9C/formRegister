@@ -11,34 +11,70 @@
                         Llena el formulario y nosotros nos pondremos en contacto con tigo
                     </div>
 
-                    <form>
+                    <form @submit.prevent="sendNewRegister">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="nameEnterprise" placeholder="name@example.com">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nameEnterprise"
+                                placeholder="name@example.com"
+                                v-model="form.companyName"
+                            >
                             <label for="nameEnterprise">Nombre de la Empresa</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="businessTurn" placeholder="Password">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="businessTurn"
+                                placeholder="Password"
+                                v-model="form.businessTurn"
+                            >
                             <label for="businessTurn">Actividad o giro del negocio</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="name" placeholder="name@example.com">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                placeholder="name@example.com"
+                                v-model="form.name"
+                            >
                             <label for="name">Nombre del Solicitante</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="floatinPassword" placeholder="Password">
-                            <label for="floatinPassword">Domicilio</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                placeholder="Password"
+                                v-model="form.address"
+                            >
+                            <label for="address">Domicilio</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatinInput" placeholder="name@example.com">
-                            <label for="floatinInput">Telefono</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="phone"
+                                placeholder="name@example.com"
+                                v-model="form.phone"
+                            >
+                            <label for="phone">Telefono</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatinPassword" placeholder="Password">
-                            <label for="floatinPassword">Correo</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="Password"
+                                v-model="form.email"
+                            >
+                            <label for="email">Correo</label>
                         </div>
 
                         <div class="form__content--btn">
-                            <button class="btn btn-primary" type="submit">Enviar</button>
+                            <button class="form__content--btnColor btn" type="submit">Enviar</button>
                         </div>
                     </form>
                 </div>
@@ -49,8 +85,46 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data: () => ({
+            form: {
+                companyName: '',
+                businessTurn: '',
+                name: '',
+                address: '',
+                phone: '',
+                email: '',
+            }
+        }),
+
+        methods: {
+            sendNewRegister(){
+                try{
+                    if(this.form.email !== '' &&
+                        this.form.phone !== '' &&
+                        this.form.name !== '' &&
+                        this.form.address !== '' &&
+                        this.form.companyName !== '' &&
+                        this.form.businessTurn !== ''
+                    ){
+                        const params = {
+                            companyName: this.form.companyName,
+                            businessTurn: this.form.businessTurn,
+                            name: this.form.name,
+                            address: this.form.address,
+                            phone: this.form.phone,
+                            email: this.form.email,
+                        }
+
+                        axios.post('/newDataClient', params).then(response => {
+                            console.log(response)
+                        })
+                    } else {
+                        alert('Por favor, llene los campos')
+                    }
+                }catch (e) {
+                    alert(e)
+                }
+            },
         }
     }
 </script>
@@ -80,6 +154,11 @@
     margin: 1rem .5rem;
     display: flex;
     justify-content: center;
+}
+
+.form__content--btnColor{
+    background-color: #996AFA;
+    color: #ffffff;
 }
 
 </style>

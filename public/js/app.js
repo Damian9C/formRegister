@@ -5315,9 +5315,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      form: {
+        companyName: '',
+        businessTurn: '',
+        name: '',
+        address: '',
+        phone: '',
+        email: ''
+      }
+    };
+  },
+  methods: {
+    sendNewRegister: function sendNewRegister() {
+      try {
+        if (this.form.email !== '' && this.form.phone !== '' && this.form.name !== '' && this.form.address !== '' && this.form.companyName !== '' && this.form.businessTurn !== '') {
+          var params = {
+            companyName: this.form.companyName,
+            businessTurn: this.form.businessTurn,
+            name: this.form.name,
+            address: this.form.address,
+            phone: this.form.phone,
+            email: this.form.email
+          };
+          axios.post('/newDataClient', params).then(function (response) {
+            console.log(response);
+          });
+        } else {
+          alert('Por favor, llene los campos');
+        }
+      } catch (e) {
+        alert(e);
+      }
+    }
   }
 });
 
@@ -10441,7 +10509,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.form[data-v-39d7afd2]{\n    padding: 1rem 2rem 0;\n}\n.form__title[data-v-39d7afd2]{\n    width: 100%;\n    text-align: center;\n    margin: 0 0 .5rem;\n    font-size: 1.5rem;\n    font-weight: bold;\n}\n.form__subTitle[data-v-39d7afd2]{\n    width: 100%;\n    text-align: center;\n    font-weight: bold;\n    margin-bottom: 2rem;\n}\n.form__content--btn[data-v-39d7afd2]{\n    margin: 1rem .5rem;\n    display: flex;\n    justify-content: center;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.form[data-v-39d7afd2]{\n    padding: 1rem 2rem 0;\n}\n.form__title[data-v-39d7afd2]{\n    width: 100%;\n    text-align: center;\n    margin: 0 0 .5rem;\n    font-size: 1.5rem;\n    font-weight: bold;\n}\n.form__subTitle[data-v-39d7afd2]{\n    width: 100%;\n    text-align: center;\n    font-weight: bold;\n    margin-bottom: 2rem;\n}\n.form__content--btn[data-v-39d7afd2]{\n    margin: 1rem .5rem;\n    display: flex;\n    justify-content: center;\n}\n.form__content--btnColor[data-v-39d7afd2]{\n    background-color: #996AFA;\n    color: #ffffff;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28452,37 +28520,57 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("div", { staticClass: "form card border-light" }, [
-            _c("div", { staticClass: "form__title" }, [
-              _vm._v(
-                "\n                    Registro de nueva empresa\n                "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form__subTitle" }, [
-              _vm._v(
-                "\n                    Llena el formulario y nosotros nos pondremos en contacto con tigo\n                "
-              ),
-            ]),
-            _vm._v(" "),
-            _c("form", [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form card border-light" }, [
+          _c("div", { staticClass: "form__title" }, [
+            _vm._v(
+              "\n                    Registro de nueva empresa\n                "
+            ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form__subTitle" }, [
+            _vm._v(
+              "\n                    Llena el formulario y nosotros nos pondremos en contacto con tigo\n                "
+            ),
+          ]),
+          _vm._v(" "),
+          _c(
+            "form",
+            {
+              on: {
+                submit: function ($event) {
+                  $event.preventDefault()
+                  return _vm.sendNewRegister.apply(null, arguments)
+                },
+              },
+            },
+            [
               _c("div", { staticClass: "form-floating mb-3" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.companyName,
+                      expression: "form.companyName",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
-                    type: "email",
+                    type: "text",
                     id: "nameEnterprise",
                     placeholder: "name@example.com",
+                  },
+                  domProps: { value: _vm.form.companyName },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "companyName", $event.target.value)
+                    },
                   },
                 }),
                 _vm._v(" "),
@@ -28493,11 +28581,28 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "form-floating mb-3" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.businessTurn,
+                      expression: "form.businessTurn",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
-                    type: "password",
+                    type: "text",
                     id: "businessTurn",
                     placeholder: "Password",
+                  },
+                  domProps: { value: _vm.form.businessTurn },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "businessTurn", $event.target.value)
+                    },
                   },
                 }),
                 _vm._v(" "),
@@ -28508,11 +28613,28 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "form-floating mb-3" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name,
+                      expression: "form.name",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
-                    type: "email",
+                    type: "text",
                     id: "name",
                     placeholder: "name@example.com",
+                  },
+                  domProps: { value: _vm.form.name },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name", $event.target.value)
+                    },
                   },
                 }),
                 _vm._v(" "),
@@ -28523,60 +28645,118 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("div", { staticClass: "form-floating mb-3" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.address,
+                      expression: "form.address",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
-                    type: "password",
-                    id: "floatinPassword",
+                    type: "text",
+                    id: "address",
                     placeholder: "Password",
+                  },
+                  domProps: { value: _vm.form.address },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "address", $event.target.value)
+                    },
                   },
                 }),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "floatinPassword" } }, [
+                _c("label", { attrs: { for: "address" } }, [
                   _vm._v("Domicilio"),
                 ]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-floating mb-3" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.phone,
+                      expression: "form.phone",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
-                    type: "email",
-                    id: "floatinInput",
+                    type: "number",
+                    id: "phone",
                     placeholder: "name@example.com",
+                  },
+                  domProps: { value: _vm.form.phone },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "phone", $event.target.value)
+                    },
                   },
                 }),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "floatinInput" } }, [
-                  _vm._v("Telefono"),
-                ]),
+                _c("label", { attrs: { for: "phone" } }, [_vm._v("Telefono")]),
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-floating" }, [
                 _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.email,
+                      expression: "form.email",
+                    },
+                  ],
                   staticClass: "form-control",
                   attrs: {
-                    type: "password",
-                    id: "floatinPassword",
+                    type: "email",
+                    id: "email",
                     placeholder: "Password",
+                  },
+                  domProps: { value: _vm.form.email },
+                  on: {
+                    input: function ($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "email", $event.target.value)
+                    },
                   },
                 }),
                 _vm._v(" "),
-                _c("label", { attrs: { for: "floatinPassword" } }, [
-                  _vm._v("Correo"),
-                ]),
+                _c("label", { attrs: { for: "email" } }, [_vm._v("Correo")]),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form__content--btn" }, [
-                _c(
-                  "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("Enviar")]
-                ),
-              ]),
-            ]),
-          ]),
+              _vm._m(0),
+            ]
+          ),
         ]),
       ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form__content--btn" }, [
+      _c(
+        "button",
+        {
+          staticClass: "form__content--btnColor btn",
+          attrs: { type: "submit" },
+        },
+        [_vm._v("Enviar")]
+      ),
     ])
   },
 ]
