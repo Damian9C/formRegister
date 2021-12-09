@@ -11,7 +11,6 @@
                         <th class="text-left">Nombre Empresa</th>
                         <th class="text-left">Nombre Solicitante</th>
                         <th class="text-left">Telefono</th>
-                        <th class="text-left">Status</th>
                         <th class="text-left">Acciones</th>
                     </tr>
                 </thead>
@@ -23,9 +22,6 @@
                     <td>{{ client.companyName }}</td>
                     <td>{{ client.name }}</td>
                     <td>{{ client.phone }}</td>
-                    <td>
-                        {{client.status === 1 ? 'Contactado' : 'En espera' }}
-                    </td>
                     <td>
                         <div class="text-center">
                             <v-dialog
@@ -148,11 +144,12 @@ export default {
             axios.post(`/deleteClients`, {
                 id: this.clientSelected.id,
             }).then(item => {
-                console.log(item)
+                alert('Cliente borrado')
             })
 
             this.dialog = false;
             this.getClientsData();
+
         },
 
         async getClientsData() {

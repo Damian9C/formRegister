@@ -5381,10 +5381,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ClientsList",
   data: function data() {
@@ -5410,7 +5406,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       axios.post("/deleteClients", {
         id: this.clientSelected.id
       }).then(function (item) {
-        console.log(item);
+        alert('Cliente borrado');
       });
       this.dialog = false;
       this.getClientsData();
@@ -29611,8 +29607,6 @@ var render = function () {
                       _vm._v("Telefono"),
                     ]),
                     _vm._v(" "),
-                    _c("th", { staticClass: "text-left" }, [_vm._v("Status")]),
-                    _vm._v(" "),
                     _c("th", { staticClass: "text-left" }, [
                       _vm._v("Acciones"),
                     ]),
@@ -29628,16 +29622,6 @@ var render = function () {
                       _c("td", [_vm._v(_vm._s(client.name))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(client.phone))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(
-                          "\n                    " +
-                            _vm._s(
-                              client.status === 1 ? "Contactado" : "En espera"
-                            ) +
-                            "\n                "
-                        ),
-                      ]),
                       _vm._v(" "),
                       _c("td", [
                         _c(
