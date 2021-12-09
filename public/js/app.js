@@ -5377,8 +5377,14 @@ __webpack_require__.r(__webpack_exports__);
             email: this.form.email
           };
           axios.post('/newDataClient', params).then(function (response) {
-            console.log(response);
+            alert('Tus datos se guardaron con exito, estate atento nos pondremos en contacto con tigo :)');
           });
+          this.form.email = '';
+          this.form.phone = '';
+          this.form.name = '';
+          this.form.address = '';
+          this.form.companyName = '';
+          this.form.businessTurn = '';
         } else {
           alert('Por favor, llene los campos');
         }
@@ -5397,32 +5403,11 @@ __webpack_require__.r(__webpack_exports__);
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/formRegister.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 Vue.component('form-register', (__webpack_require__(/*! ./components/formRegister.vue */ "./resources/js/components/formRegister.vue")["default"]));
 Vue.component('contact-form', (__webpack_require__(/*! ./components/ContactForm.vue */ "./resources/js/components/ContactForm.vue")["default"]));
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
 var app = new Vue({
   el: '#app'
 });
@@ -28523,7 +28508,7 @@ var render = function () {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-6" }, [
-        _c("div", { staticClass: "form card border-light" }, [
+        _c("div", { staticClass: "form card border-light shadow-sm" }, [
           _c("div", { staticClass: "form__title" }, [
             _vm._v(
               "\n                    Registro de nueva empresa\n                "

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="form card border-light">
+                <div class="form card border-light shadow-sm">
                     <div class="form__title">
                         Registro de nueva empresa
                     </div>
@@ -116,8 +116,15 @@
                         }
 
                         axios.post('/newDataClient', params).then(response => {
-                            console.log(response)
+                            alert('Tus datos se guardaron con exito, estate atento nos pondremos en contacto con tigo :)')
                         })
+
+                        this.form.email = '';
+                        this.form.phone = '';
+                        this.form.name = '' ;
+                        this.form.address = '';
+                        this.form.companyName = '';
+                        this.form.businessTurn = '';
                     } else {
                         alert('Por favor, llene los campos')
                     }

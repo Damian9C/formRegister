@@ -21,6 +21,7 @@ class CreateDataClientsControllersTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('email');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

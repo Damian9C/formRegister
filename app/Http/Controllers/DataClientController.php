@@ -50,6 +50,7 @@ class DataClientController extends Controller
         $dataClient->address = $request->address;
         $dataClient->phone = $request->phone;
         $dataClient->email = $request->email;
+        $dataClient->status = false;
         $dataClient->save();
 
         return $dataClient;
@@ -92,6 +93,7 @@ class DataClientController extends Controller
         $dataClient->name = $request->name;
         $dataClient->address = $request->address;
         $dataClient->phone = $request->phone;
+        $dataClient->status = $request->status;
         $dataClient->save();
 
         return $dataClient;
