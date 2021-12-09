@@ -5295,7 +5295,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ClientsList",
   data: function data() {
@@ -5478,19 +5477,17 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _plugins_vuetify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./plugins/vuetify */ "./resources/js/plugins/vuetify.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var vuetify = __webpack_require__(/*! ./plugins/vuetify */ "./resources/js/plugins/vuetify.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 Vue.component('form-register', (__webpack_require__(/*! ./components/FormRegister.vue */ "./resources/js/components/FormRegister.vue")["default"]));
 Vue.component('clients-list', (__webpack_require__(/*! ./components/ClientsList.vue */ "./resources/js/components/ClientsList.vue")["default"]));
 var app = new Vue({
-  vuetify: _plugins_vuetify__WEBPACK_IMPORTED_MODULE_0__["default"]
+  vuetify: vuetify
 }).$mount('#app');
 
 /***/ }),
